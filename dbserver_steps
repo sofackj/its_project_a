@@ -1,0 +1,8 @@
+# Database Set-up
+# Installation of mysql
+dnf install mysql-server -y
+# Start MySQL
+systemctl start mysqld
+# Install Python-MySQL
+dnf install python39-PyMySQL -y
+pip3 install pymysql
