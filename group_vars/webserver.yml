@@ -1,2 +1,3 @@
 ---
 testVar: "my-webserver"
+config_structure: ["sites-availables","sites-enabled"]
