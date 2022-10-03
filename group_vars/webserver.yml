@@ -1,3 +1,4 @@
 ---
 testVar: "my-webserver"
+web_port: 80
 config_structure: ["sites-availables","sites-enabled"]
