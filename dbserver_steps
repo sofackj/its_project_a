@@ -1,0 +1,48 @@
+# Database Set-up
+# If possible, to install after the webserver
+
+#-> Dependancies installation 
+# Installations using DNF
+# Installation of python39 if the seup occurs in an other node than the web server
+dnf install mysql-server python39 python39-PyMySQL -y
+# Installation using pip3
+pip3 install pymysql
+
+# Start MySQL server
+systemctl start mysqld
+
+# SQL injection
+#-> Data creation for the database testdb
+cat <<EOF > data-inject.sql
+CREATE DATABASE IF NOT EXISTS testdb;
+USE testdb;
+CREATE TABLE IF NOT EXISTS test (
+        message varchar(255)
+);
+INSERT INTO test (message) VALUES ('Hello World !');
+INSERT INTO test (message) VALUES ('Hello You !');
+INSERT INTO test (message) VALUES ('Hello Us !');
+EOF
+#-> Injection in mysql via root
+mysql -u root < data-inject.sql
+
+#-> Additionnal script for showing the data from testdb
+cat <<EOF >> /var/www/html/test/index.py
+
+import pymysql
+
+# Connect to the database
+conn = pymysql.connect(
+db='testdb',
+user='root',
+passwd='',
+host='localhost'
+)
+c = conn.cursor()
+c.execute("SELECT * FROM test;")
+for i in c:
+        print(i)
+EOF
+
+# Check the connection between mysql server and the web server
+curl http://localhost:80
