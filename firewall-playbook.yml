@@ -1,0 +1,26 @@
+---
+- name: Setup for the firewall
+  hosts: webserver
+  become: yes
+  tasks:
+  - name: Start Firewalld service
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+  # Enable the port 80 (could change with a variable)
+  - name: Enable service for the specified port
+    firewalld:
+      port: 80/tcp
+      permanent: yes
+      immediate: yes
+      state: enabled
+      zone: public
+    notify:
+    - Restart firewalld service
+  # Restart firewalld for each modification
+  handlers:
+    - name: Restart firewalld service
+      service:
+        name: firewalld
+        state: restarted
