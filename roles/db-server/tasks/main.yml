@@ -1,4 +1,3 @@
----
 # Installation of mysql
 - name: Installation mysql
   dnf:
