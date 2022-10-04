@@ -1,3 +1,3 @@
 ---
 testVar: "my-dbserver"
-port_number: 3306
+db_port: 3306
