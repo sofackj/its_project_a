@@ -1,0 +1,6 @@
+- name: Setup httpd server
+  hosts: webserver
+  become: yes
+  gather_facts: false
+  roles:
+  - httpd-server
