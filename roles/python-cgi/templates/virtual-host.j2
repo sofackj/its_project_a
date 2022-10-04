@@ -1,0 +1,8 @@
+<VirtualHost *:{{ web_port }}>
+	DocumentRoot {{ site_directory }}
+	<Directory "{{ site_directory }}">
+		Options +ExecCGI
+		DirectoryIndex index.py
+	</Directory>
+	AddHandler cgi-script .py
+</VirtualHost>

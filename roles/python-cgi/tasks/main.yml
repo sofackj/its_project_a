@@ -1,0 +1,32 @@
+# Install python3 and pip dependancies
+- name: Install python39 and mysql dependancies
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items: ['git','python39','python39-PyMySQL']
+# Install pymysql
+- name: Install pymysql
+  pip:
+    name: pymysql
+# Setup the conf file with the symbolic link
+- name: test copy files
+  copy:
+    src: /home/devops/its_project_a/myFirstSite
+    dest: /etc/httpd/sites-availables/myfirstSite
+# Symolic link to enable the config file for httpd
+- name: test symbolic link
+  file:
+    src: /etc/httpd/sites-availables/myfirstSite
+    dest: /etc/httpd/sites-enabled/myfirstSite.conf
+    state: link
+# Download the script to execute
+- name: test git repo
+  git:
+    repo: '{{ git_repository }}'
+    dest: '{{ site_directory }}'
+    single_branch: yes
+    version: '{{ git_branch }}'
+    force: yes
+  notify:
+  - Give permission to directory
+  - Restart httpd service

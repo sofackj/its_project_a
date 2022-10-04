@@ -1,0 +1,11 @@
+- name: Restart httpd service
+  service:
+    name: httpd
+    state: restarted
+
+- name: Give permission to directory
+  file:
+    path: '{{ site_directory }}'
+    state: directory
+    mode: '0755'
+    recurse: yes
