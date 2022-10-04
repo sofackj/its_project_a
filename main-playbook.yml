@@ -4,4 +4,10 @@
   gather_facts: false
   roles:
   - httpd-server
+
+- name: Setup httpd server
+  hosts: dbserver
+  become: yes
+  gather_facts: false
+  roles:
   - db-server
