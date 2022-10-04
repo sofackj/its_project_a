@@ -1,6 +1,6 @@
 ---
 - name: Setup for the firewall
-  hosts: webserver
+  hosts: webserver, dbserver
   become: yes
   tasks:
   - name: Start Firewalld service
@@ -11,7 +11,7 @@
   # Enable the port specified in the webserver variables
   - name: Enable service for the specified port
     firewalld:
-      port: '{{ web_port }}/tcp'
+      port: '{{ port_number }}/tcp'
       permanent: yes
       immediate: yes
       state: enabled
