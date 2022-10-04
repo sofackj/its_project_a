@@ -1,1 +1,16 @@
 ---
+- name: Setup the mysql database
+  hosts: dbserver
+  become: yes
+  tasks:
+  # Installation of mysql
+  - name: Installation mysql
+    dnf:
+      name: mysql-server
+      state: present
+  # Setup mysql service
+  - name: Activating mysql service
+    service:
+      name: mysqld
+      state: started
+      enabled: yes
