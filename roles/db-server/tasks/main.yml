@@ -1,8 +1,4 @@
 ---
-- name: Setup the mysql database
-  hosts: dbserver
-  become: yes
-  tasks:
 # Installation of mysql
 - name: Installation mysql
   dnf:
