@@ -1,6 +1,6 @@
 <VirtualHost *:80>
-	DocumentRoot /var/www/html/test
-	<Directory "/var/www/html/test">
+	DocumentRoot /var/www/html/
+	<Directory "/var/www/html/">
 		Options +ExecCGI
 		DirectoryIndex index.py
 	</Directory>
