@@ -9,10 +9,15 @@
   pip:
     name: pymysql
 # Setup the conf file with the symbolic link
-- name: test copy files
-  copy:
-    src: myFirstSite
+- name: Template the virtual-host
+  template:
+    src: virtual-host.j2
     dest: /etc/httpd/sites-availables/myfirstSite
+# Setup the conf file with the symbolic link
+# - name: test copy files
+#   copy:
+#     src: myFirstSite
+#     dest: /etc/httpd/sites-availables/myfirstSite
 # Symolic link to enable the config file for httpd
 - name: test symbolic link
   file:

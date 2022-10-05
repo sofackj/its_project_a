@@ -1,3 +1,8 @@
+# Delete test_db
+- name: Delete database test_db
+  mysql_db:
+    name: test_db
+    state: absent
 # Copy the mysql dump file
 - name: Transfer dump.sql
   copy:
