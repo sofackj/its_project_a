@@ -1,0 +1,16 @@
+- name: Inject tables in database
+  hosts: dbserver
+  become: yes
+  tasks:
+
+  - name: Transfer dump.sql
+    copy:
+      src: myFirstDb.sql
+      dest: /tmp/dump.sql
+  
+  - name: Restore database
+    mysql_db:
+      name: test_db
+      state: import
+      target: /tmp/dump.sql
+    
