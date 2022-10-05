@@ -11,7 +11,6 @@
 # Back-up the standard httpd config file
 - name: Back-up the httpd config file
   copy:
-    # Copy a remote file nota local file from the controller
     remote_src: yes
     src: /etc/httpd/conf/httpd.conf
     dest: /etc/httpd/conf/httpd.conf.backup

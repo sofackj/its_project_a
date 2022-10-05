@@ -9,6 +9,19 @@
     name: mysqld
     state: started
     enabled: yes
+# Back-up the standard  my.cnf file
+- name: Back-up the httpd config file
+  copy:
+    remote_src: yes
+    src: /etc/my.cnf
+    dest: /etc/my.cnf.backup
+# Setup the conf file with the symbolic link
+- name: Replace the my.cnf file by the template
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+#-> Firewalld service set up
+# Start Firewalld service
 - name: Start Firewalld service
   service:
     name: firewalld

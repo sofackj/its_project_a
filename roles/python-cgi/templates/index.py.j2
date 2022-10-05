@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+import pymysql
+
+print("Content-Type: text/html")
+print()
+for i in range(10):
+  print(i*'#')
+print()
+print("Here data for the database test_db !")
+print()
+# Connect to the database
+conn = pymysql.connect(
+db={{ database_name }},
+user={{ ansible_user }},
+passwd={{ db_password }},
+host={{ hostvars['web1']['ansible_host'] }}
+)
+c = conn.cursor()
+c.execute("SELECT * FROM test;")
+for i in c:
+        print(i[0])

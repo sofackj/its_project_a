@@ -3,9 +3,9 @@ all:
   children:
     webserver:
       hosts:
-        node1:
+        web1:
           ansible_host: 192.168.43.76
     dbserver:
       hosts:
-        node2:
+        db1:
           ansible_host: 192.168.43.76

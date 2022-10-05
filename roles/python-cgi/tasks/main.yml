@@ -20,13 +20,18 @@
     dest: /etc/httpd/sites-enabled/myfirstSite.conf
     state: link
 # Download the script to execute
-- name: test git repo
-  git:
-    repo: '{{ git_repository }}'
-    dest: '{{ site_directory }}'
-    single_branch: yes
-    version: '{{ git_branch }}'
-    force: yes
+# - name: test git repo
+#   git:
+#     repo: '{{ git_repository }}'
+#     dest: '{{ site_directory }}'
+#     single_branch: yes
+#     version: '{{ git_branch }}'
+#     force: yes
+# Setup template for python-cgi execution
+- name: Add index.py to html
+  template:
+    src: index.py.j2
+    dest: /var/www/html
   notify:
   - Give permission to directory
   - Restart httpd service

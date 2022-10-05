@@ -1,0 +1,21 @@
+#
+# This group is read both both by the client and the server
+# use it for options that affect everything
+#
+[client-server]
+
+#
+# include all files from the config directory
+#
+
+[mysqld]
+# Unix socket settings (making localhost work)
+user            = mysql
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+
+# TCP Socket settings (making 0.0.0.0 work)
+port            = {{ db_port }}
+bind-address    = 0.0.0.0
+
+!includedir /etc/my.cnf.d
