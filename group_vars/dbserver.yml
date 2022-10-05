@@ -3,4 +3,4 @@ testVar: "my-dbserver"
 db_port: 3306
 ansible_user: "devops"
 database_name: "test_db"
-db_password: "hello"
+db_password: '{{ vault_db_pass }}'

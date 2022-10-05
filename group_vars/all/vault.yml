@@ -1,0 +1,3 @@
+---
+vault_ssh_pass: "devops"
+vault_db_pass: "hello"
