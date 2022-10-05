@@ -1,0 +1,11 @@
+# Copy the mysql dump file
+- name: Transfer dump.sql
+  copy:
+    src: dump.sql
+    dest: /tmp/dump.sql
+# Creation of the database and import of the table
+- name: Restore database
+  mysql_db:
+    name: test_db
+    state: import
+    target: /tmp/dump.sql
