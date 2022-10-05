@@ -1,7 +1,7 @@
 # Delete test_db
 - name: Delete database test_db
   mysql_db:
-    name: test_db
+    name: '{{ database_name }}'
     state: absent
 # Copy the mysql dump file
 - name: Transfer dump.sql
@@ -11,6 +11,13 @@
 # Creation of the database and import of the table
 - name: Restore database
   mysql_db:
-    name: test_db
+    name: '{{ database_name }}'
     state: import
     target: /tmp/dump.sql
+# Create a user for this database
+- name: Add user devops
+  community.mysql.mysql_user:
+    name: devops
+    password: hello
+    priv: '*.*:ALL'
+    state: present
