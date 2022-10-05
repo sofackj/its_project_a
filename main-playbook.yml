@@ -12,3 +12,4 @@
   gather_facts: false
   roles:
   - db-server
+  - create-mysql-db

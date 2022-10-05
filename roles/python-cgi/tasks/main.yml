@@ -11,7 +11,7 @@
 # Setup the conf file with the symbolic link
 - name: test copy files
   copy:
-    src: /home/devops/its_project_a/myFirstSite
+    src: myFirstSite
     dest: /etc/httpd/sites-availables/myfirstSite
 # Symolic link to enable the config file for httpd
 - name: test symbolic link
