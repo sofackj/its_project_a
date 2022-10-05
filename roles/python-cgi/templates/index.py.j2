@@ -13,7 +13,7 @@ print()
 conn = pymysql.connect(
 db={{ hostvars['db1']['database_name'] }},
 user={{ ansible_user }},
-passwd={{ db_password }},
+passwd={{ hostvars['db1']['db_password'] }},
 host={{ ansible_host }}
 )
 c = conn.cursor()
