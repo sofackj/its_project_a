@@ -4,6 +4,7 @@
   gather_facts: false
   roles:
   - httpd-server
+  - python-cgi
 
 - name: Setup httpd server
   hosts: dbserver

@@ -1,1 +1,3 @@
 testVar: "all-of-them"
+ansible_ssh_pass: "devops"
+ansible_become_pass: "devops"
