@@ -17,7 +17,8 @@
 # Create a user for this database
 - name: Add user devops
   community.mysql.mysql_user:
-    name: '{{ ansible_host }}'
+    name: '{{ ansible_user }}'
     password: '{{ db_password }}'
-    priv: '*.*:ALL'
+    host: "{{ hostvars['web1']['ansible_host'] }}"
+    priv: '{{ database_name }}.*:ALL'
     state: present

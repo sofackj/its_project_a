@@ -8,4 +8,6 @@
     path: '{{ site_directory }}'
     state: directory
     mode: '0755'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
     recurse: yes

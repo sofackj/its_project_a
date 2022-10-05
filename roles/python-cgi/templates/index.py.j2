@@ -11,10 +11,10 @@ print("Here data for the database test_db !")
 print()
 # Connect to the database
 conn = pymysql.connect(
-db={{ hostvars['db1']['database_name'] }},
-user={{ ansible_user }},
-passwd={{ hostvars['db1']['db_password'] }},
-host={{ ansible_host }}
+db='{{ hostvars['db1']['database_name'] }}',
+user='{{ ansible_user }}',
+passwd='{{ hostvars['db1']['db_password'] }}',
+host='{{ ansible_host }}'
 )
 c = conn.cursor()
 c.execute("SELECT * FROM test;")

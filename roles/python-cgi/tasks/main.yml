@@ -31,7 +31,7 @@
 - name: Add index.py to html
   template:
     src: index.py.j2
-    dest: /var/www/html
+    dest: /var/www/html/index.py
   notify:
   - Give permission to directory
   - Restart httpd service
