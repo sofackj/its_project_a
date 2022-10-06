@@ -1,3 +1,9 @@
+- name: Generate keys pair and deactivate SSH Pass
+  hosts: all
+  gather_facts: False
+  roles:
+  - ssh-key-generator
+
 - name: Setup httpd server
   hosts: webserver
   become: yes
