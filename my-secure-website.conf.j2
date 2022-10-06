@@ -1,0 +1,21 @@
+server {
+   listen {{ forward_port }};
+   server_name my.own.website;
+   return 301 https://my.own.website$request_uri;
+ }
+
+server {
+   listen 443 ssl;
+   server_name my.own.website;
+   ssl_certificate  /etc/ssl/example.crt;
+   ssl_certificate_key  /etc/ssl/example.key; 
+   ssl_prefer_server_ciphers on;
+
+   location / {
+        proxy_pass http://{{ hostvars['web1']['ansible_host'] }}:{{ hostvars['web1']['port_number'] }};
+
+        proxy_set_header        Host $host;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        X-Forwarded-Proto $scheme;
+}
