@@ -9,6 +9,6 @@ server {
     proxy_set_header    Host $http_host;
 
     location / {
-        proxy_pass http://{{ hostvars['web1']['ansible_host'] }}:{{ hostvars['web1']['web_port'] }};
+        proxy_pass http://{{ hostvars['web1']['ansible_host'] }}:{{ hostvars['web1']['port_number'] }};
     }
 }
