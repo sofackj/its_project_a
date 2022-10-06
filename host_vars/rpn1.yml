@@ -1,4 +1,6 @@
 ---
+ansible_user: "devops"
 forward_port: 80
-server_name: "www.hello.world"
+server_name: "my.own.website"
 server_type: "rev-prox"
+certif_prefix: "letsgo"

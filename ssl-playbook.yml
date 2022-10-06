@@ -1,0 +1,32 @@
+- name: hhhhhhhh
+  hosts: rpn1
+  tasks:
+  - name: Create certificate and key
+    shell: "openssl req -newkey rsa:4096 -x509 \
+            -sha256 -days 3650 -nodes -out {{ certif_prefix }}.crt \
+            -keyout {{ certif_prefix }}.key \
+            -subj '/C=SI/ST=Ljubljana/L=Ljubljana/O=Security/OU=IT Department/CN=www.{{ certif_prefix }}.com'"
+
+  - name: Check
+    shell: "ls ~"
+    register: check_items
+
+  - name: Move files
+    copy:
+      remote_src: yes
+      src: "/home/{{ ansible_user }}/{{ item }}"
+      dest: /etc/ssl/{{ item }}
+    with_items: "{{ check_items.stdout_lines|list }}"
+    become: yes
+
+  - name: Delete files
+    file:
+      path: "/home/{{ ansible_user }}/{{ item }}"
+      state: absent
+    with_items: "{{ check_items.stdout_lines|list }}"
+
+  - name: Copy config file
+    template:
+      src: my-secure-website.conf.j2
+      dest: /etc/nginx/conf.d/my-website.conf
+    become: yes
