@@ -1,0 +1,6 @@
+---
+- name: Reverse proxy nginx setup
+  hosts: rpn1
+  become: yes
+  roles:
+  - reverse-proxy-server

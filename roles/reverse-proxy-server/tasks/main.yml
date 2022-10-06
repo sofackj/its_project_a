@@ -1,0 +1,28 @@
+---
+# Install nginx
+- name: Install nginx
+  dnf:
+    name: nginx
+    state: present
+
+# Back up the nginx.conf file
+- name: Copy the backup of the nginx conf file (already modified)
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/{{ item }}
+  with_items: ['nginx.conf','nginx.conf.backup']
+  notify: Restart nginx service
+
+# Back up the nginx.conf file
+- name: Add the conf file of the website
+  template:
+    src: my-website.conf.j2
+    dest: /etc/nginx/conf.d/my-website.conf
+  notify: Restart nginx service
+
+# Start nginx service
+- name: Start nginx service
+  service:
+    name: nginx
+    state: started
+    enabled: yes

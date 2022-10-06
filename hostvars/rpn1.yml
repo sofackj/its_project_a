@@ -1,0 +1,3 @@
+---
+forward_port: 80
+server_name: "www.hello.world"
