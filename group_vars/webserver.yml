@@ -1,6 +1,8 @@
 ---
 testVar: "my-webserver"
 ansible_user: "devops"
-web_port: 9001
+port_number: 9001
 config_structure: ["sites-availables","sites-enabled"]
 git_repository: "https://github.com/sofackj/python-cgi.git"
+server_type: "web"
+answer_to: '{{ hostvars['rpn1']['ansible_host'] }}'

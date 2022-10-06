@@ -21,19 +21,19 @@
     src: my.cnf.j2
     dest: /etc/my.cnf
 #-> Firewalld service set up
-# Start Firewalld service
-- name: Start Firewalld service
-  service:
-    name: firewalld
-    state: started
-    enabled: yes
-# Enable the port specified in the webserver variables
-- name: Enable service for the specified port
-  firewalld:
-    port: '{{ db_port }}/tcp'
-    permanent: yes
-    immediate: yes
-    state: enabled
-    zone: public
-  notify:
-  - Restart firewalld service
+# # Start Firewalld service
+# - name: Start Firewalld service
+#   service:
+#     name: firewalld
+#     state: started
+#     enabled: yes
+# # Enable the port specified in the webserver variables
+# - name: Enable service for the specified port
+#   firewalld:
+#     port: '{{ db_port }}/tcp'
+#     permanent: yes
+#     immediate: yes
+#     state: enabled
+#     zone: public
+#   notify:
+  # - Restart firewalld service

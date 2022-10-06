@@ -15,7 +15,7 @@ pid-file        = /var/run/mysqld/mysqld.pid
 socket          = /var/run/mysqld/mysqld.sock
 
 # TCP Socket settings (making 0.0.0.0 work)
-port            = {{ db_port }}
+port            = {{ port_number }}
 bind-address    = 0.0.0.0
 
 !includedir /etc/my.cnf.d
