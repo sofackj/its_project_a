@@ -1,4 +1,12 @@
 ---
+ # Deactivate ssh password
+ - name: Ensure SSH is deactivate
+   lineinfile:
+     path: ansible.cfg
+     regexp: '^ssh_args'
+     line: #ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey
+   delegate_to: 127.0.0.1
+   run_once: True
  # Create the public and private key pair
  - name: generate SSH key
    openssh_keypair:
@@ -16,13 +24,6 @@
      key: "{{ lookup('file', '~/.ssh/id_rsa_its.pub') }}"
      state: present
    become: yes
-   #run_once: True
- # Deactivate ssh password
- - name: Ensure SSH is deactivate
-   lineinfile:
-     path: ansible.cfg
-     regexp: '^#ssh_args'
-     line: ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey
-   delegate_to: 127.0.0.1
-   run_once: True
+   notify: Ensure SSH is deactivate
+ 
 
