@@ -2,6 +2,7 @@
   hosts: all
   gather_facts: False
   roles:
+  # Deploy public key on remote servers
   - ssh-key-generator
 
 - name: Setup httpd server
@@ -9,7 +10,9 @@
   become: yes
   gather_facts: false
   roles:
+  # Setup the HTTPD webserver
   - httpd-server
+  # Setup the python-cgi test
   - python-cgi
 
 - name: Setup httpd server
@@ -17,5 +20,14 @@
   become: yes
   gather_facts: false
   roles:
+  # Setup the MySQL server
   - db-server
+  # Build the database and connections to the webserver
   - create-mysql-db
+
+- name: Reverse proxy nginx setup
+  hosts: rpn1
+  become: yes
+  roles:
+  # Setup the NGINX reverse-proxy server
+  - reverse-proxy-server
