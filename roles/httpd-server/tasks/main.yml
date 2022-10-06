@@ -11,8 +11,7 @@
 # Back-up the standard httpd config file
 - name: Back-up the httpd config file
   copy:
-    remote_src: yes
-    src: /etc/httpd/conf/httpd.conf
+    src: httpd.conf.backup
     dest: /etc/httpd/conf/httpd.conf.backup
 # Addition of sites-availables and -enabled directories
 - name: Addition of directories for httpd setup config
@@ -21,10 +20,10 @@
     state: directory
   with_items: '{{ config_structure }}'
 # Add a line at the end of the httpd config file
-- name: Add sites-enabled directory to the optional config files
-  lineinfile:
-    path: /etc/httpd/conf/httpd.conf
-    line: 'IncludeOptional {{ config_structure[1] }}/*.conf'
+- name: Conf file with web_port and conf files folder variables
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
   notify:
   - Restart httpd service
 - name: Start Firewalld service
