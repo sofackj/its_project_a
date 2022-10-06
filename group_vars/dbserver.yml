@@ -5,4 +5,4 @@ ansible_user: "devops"
 database_name: "test_db"
 db_password: '{{ vault_db_pass }}'
 server_type: "db"
-answer_to: '{{ hostvars['web1']['ansible_host'] }}'
+answer_to: "{{ hostvars['web1']['ansible_host'] }}"

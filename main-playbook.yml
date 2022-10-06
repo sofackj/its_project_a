@@ -14,6 +14,7 @@
   - httpd-server
   # Setup the python-cgi test
   - python-cgi
+  - firewall-setup
 
 - name: Setup httpd server
   hosts: dbserver
@@ -24,6 +25,7 @@
   - db-server
   # Build the database and connections to the webserver
   - create-mysql-db
+  - firewall-setup
 
 - name: Reverse proxy nginx setup
   hosts: rpn1
@@ -31,3 +33,4 @@
   roles:
   # Setup the NGINX reverse-proxy server
   - reverse-proxy-server
+  - firewall-setup
