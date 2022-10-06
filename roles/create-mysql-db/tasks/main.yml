@@ -1,3 +1,9 @@
+# Install python3 and pip dependancies
+- name: Install python39 and mysql dependancies
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items: ['python39','python3-PyMySQL']
 # Delete test_db
 - name: Delete database test_db
   mysql_db:

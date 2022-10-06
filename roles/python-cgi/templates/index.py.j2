@@ -14,7 +14,7 @@ conn = pymysql.connect(
 db='{{ hostvars['db1']['database_name'] }}',
 user='{{ ansible_user }}',
 passwd='{{ hostvars['db1']['db_password'] }}',
-host='{{ ansible_host }}'
+host='{{ hostvars['db1']['ansible_host'] }}'
 )
 c = conn.cursor()
 c.execute("SELECT * FROM test;")

@@ -16,7 +16,7 @@
      key: "{{ lookup('file', '~/.ssh/id_rsa_its.pub') }}"
      state: present
    become: yes
-   run_once: True
+   #run_once: True
  # Deactivate ssh password
  - name: Ensure SSH is deactivate
    lineinfile:
