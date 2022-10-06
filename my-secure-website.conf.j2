@@ -8,7 +8,7 @@ server {
    listen 443 ssl;
    server_name {{ server_name }};
    ssl_certificate  /etc/ssl/{{ certif_prefix }}.crt;
-   ssl_certificate_key  /etc/ssl/{{ certif_prefix }}; 
+   ssl_certificate_key  /etc/ssl/{{ certif_prefix }}.key; 
    ssl_prefer_server_ciphers on;
 
    location / {
