@@ -28,4 +28,3 @@
     host: "{{ hostvars['web1']['ansible_host'] }}"
     priv: '{{ database_name }}.*:ALL'
     state: present
-  notify: Ensure SSH pass is Activated
