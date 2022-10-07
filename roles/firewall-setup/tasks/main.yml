@@ -6,11 +6,12 @@
 # Enable the forward for the reverse-proxy server
 - name: Enable service for the specified port
   firewalld:
-    port: '{{ forward_port }}/tcp'
+    port: '{{ item }}/tcp'
     permanent: yes
     immediate: yes
     state: enabled
     zone: public
+  with_items: '{{ firewall_port }}'
   when: server_type == "rev-prox"
   notify:
   - Restart firewalld service

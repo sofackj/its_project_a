@@ -33,4 +33,5 @@
   roles:
   # Setup the NGINX reverse-proxy server
   - reverse-proxy-server
+  - ssl-certificates
   - firewall-setup

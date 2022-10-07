@@ -1,4 +1,4 @@
-# restart nginx service
+# Restart nginx service
 - name: Restart nginx service
   service:
     name: nginx
