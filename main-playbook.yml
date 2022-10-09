@@ -1,5 +1,6 @@
 - name: Generate keys pair and deactivate SSH Pass
   hosts: all
+  tags: ssh-keys
   gather_facts: False
   roles:
   # Deploy public key on remote servers
@@ -7,8 +8,9 @@
 
 - name: Setup httpd server
   hosts: webserver
+  tags: web-server
   become: yes
-  gather_facts: false
+  gather_facts: False
   roles:
   # Setup the HTTPD webserver
   - httpd-server
@@ -18,7 +20,9 @@
 
 - name: Reverse proxy nginx setup
   hosts: rpn1
+  tags: reverse-proxy
   become: yes
+  gather_facts: False
   roles:
   # Setup the NGINX reverse-proxy server
   - reverse-proxy-server
@@ -27,11 +31,23 @@
 
 - name: Setup httpd server
   hosts: dbserver
+  tags: database
   become: yes
-  gather_facts: false
+  gather_facts: False
   roles:
   # Setup the MySQL server
   - db-server
   # Build the database and connections to the webserver
   - create-mysql-db
+  - firewall-setup
+
+- name: Setup the DNS
+  hosts: dns1
+  tags: dns
+  become: yes
+  gather_facts: False
+  roles:
+  # Setup the MySQL server
+  - dns-setup
+  # Build the database and connections to the webserver
   - firewall-setup

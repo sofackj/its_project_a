@@ -1,0 +1,7 @@
+# Install bind and its utilities
+- name: Install bind and dependancies
+  dnf:
+    name:
+      - bind
+      - bind-utils
+    state: present
