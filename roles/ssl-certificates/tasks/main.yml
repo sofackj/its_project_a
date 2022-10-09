@@ -8,7 +8,7 @@
   shell: "ls ~"
   register: check_items
   become: yes
-  become-user: "{{ ansible_user }}""
+  become_user: "{{ ansible_user }}"
 
 - name: Move files
   copy:
@@ -29,3 +29,4 @@
     src: my-secure-website.conf.j2
     dest: /etc/nginx/conf.d/my-website.conf
   become: yes
+  notify: Restart nginx service
