@@ -7,6 +7,8 @@
 - name: Check
   shell: "ls ~"
   register: check_items
+  become: yes
+  become-user: "{{ ansible_user }}""
 
 - name: Move files
   copy:
