@@ -16,4 +16,4 @@
     key: "{{ lookup('file', '~/.ssh/id_rsa_its.pub') }}"
     state: present
   become: yes
-  notify: Ensure SSH is deactivate
+  # notify: Ensure SSH is deactivate
