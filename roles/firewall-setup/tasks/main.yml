@@ -29,7 +29,7 @@
 # Enable the forward for the reverse-proxy server
 - name: Enable a specific service
   firewalld:
-    zone: dns
+    service: dns
     permanent: yes
     immediate: yes
     state: enabled

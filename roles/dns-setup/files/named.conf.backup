@@ -8,15 +8,15 @@
 //
 
 options {
-        listen-on port 53 { any; };
-        listen-on-v6 port 53 { any; };
+        listen-on port 53 { 127.0.0.1; };
+        listen-on-v6 port 53 { ::1; };
         directory       "/var/named";
         dump-file       "/var/named/data/cache_dump.db";
         statistics-file "/var/named/data/named_stats.txt";
         memstatistics-file "/var/named/data/named_mem_stats.txt";
         secroots-file   "/var/named/data/named.secroots";
         recursing-file  "/var/named/data/named.recursing";
-        allow-query     { any; };
+        allow-query     { localhost; };
 
         /*
          - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
@@ -28,7 +28,7 @@ options {
            attacks. Implementing BCP38 within your network would greatly
            reduce such attack surface
         */
-        recursion no;
+        recursion yes;
 
         dnssec-enable yes;
         dnssec-validation yes;

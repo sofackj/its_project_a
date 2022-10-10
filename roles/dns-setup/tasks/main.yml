@@ -5,3 +5,18 @@
       - bind
       - bind-utils
     state: present
+# Setup of config file
+- name: Config files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/named/{{ item }}"
+  with_items: ['named.conf','named.conf.backup']
+# Setup forward and reveerse files
+- name: Config files in var
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/named/{{ item }}"
+    owner: root
+    group: named
+    mode: '0644'
+  with_items: ['jujutoits.forward','jujutoits.reverse']

@@ -1,0 +1,15 @@
+$TTL 86400
+@   IN  SOA     dns1.jujutoits.com. root.jujutoits.com. (
+         2021080804          ;Serial
+         3600        ;Refresh
+         1800        ;Retry
+         604800      ;Expire
+         86400       ;Minimum TTL
+ )
+         ; Set Name Server
+@         IN  NS      dns1.jujutoits.com.
+; Set each IP address of a hostname. Sample PTR records.
+225      IN  PTR     dns1.jujutoits.com.
+211      IN  PTR     hello.jujutoits.com.
+211      IN  PTR     bye.jujutoits.com.
+34     IN  PTR     controller.jujutoits.com.

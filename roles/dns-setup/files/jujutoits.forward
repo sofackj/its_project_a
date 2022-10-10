@@ -1,0 +1,18 @@
+$TTL 86400
+@   IN  SOA     dns1.jujutoits.com. root.jujutoits.com. (
+         2021080804  ;Serial
+         3600        ;Refresh
+         1800        ;Retry
+         604800      ;Expire
+         86400       ;Minimum TTL
+)
+        ; Set your Name Servers here
+@         IN  NS      dns1.jujutoits.com.
+         ; define Name Server's IP address
+@         IN  A       192.168.43.225
+
+; Set each IP address of a hostname. Sample A records.
+dns1           IN  A       192.168.43.225
+hello     IN  A       192.168.43.211
+bye     IN  A       192.168.43.211
+controller    IN  A       192.168.43.34
