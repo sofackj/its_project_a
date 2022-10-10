@@ -20,3 +20,4 @@
     group: named
     mode: '0644'
   with_items: ['jujutoits.forward','jujutoits.reverse']
+  notify: Restart named service
