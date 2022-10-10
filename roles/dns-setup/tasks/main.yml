@@ -11,11 +11,12 @@
     src: "{{ item }}"
     dest: "/etc/{{ item }}"
   with_items: ['named.conf','named.conf.backup']
+  notify: Restart named service
 # Setup forward and reveerse files
 - name: Config files in var
   copy:
     src: "{{ item }}"
-    dest: "/etc/named/{{ item }}"
+    dest: "/var/named/{{ item }}"
     owner: root
     group: named
     mode: '0644'
