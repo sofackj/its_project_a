@@ -9,7 +9,7 @@
 - name: Config files
   copy:
     src: "{{ item }}"
-    dest: "/etc/named/{{ item }}"
+    dest: "/etc/{{ item }}"
   with_items: ['named.conf','named.conf.backup']
 # Setup forward and reveerse files
 - name: Config files in var
