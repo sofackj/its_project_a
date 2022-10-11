@@ -9,10 +9,10 @@ $TTL 86400
         ; Set your Name Servers here
 @         IN  NS      dns1.jujutoits.com.
          ; define Name Server's IP address
-@         IN  A       192.168.43.225
+@         IN  A       192.190.70.12
 
 ; Set each IP address of a hostname. Sample A records.
-dns1           IN  A       192.168.43.225
-hello     IN  A       192.168.43.211
-bye     IN  A       192.168.43.211
-controller    IN  A       192.168.43.34
+dns1           IN  A       192.190.70.12
+hello     IN  A       192.190.70.11
+bye     IN  A       192.190.70.11
+controller    IN  A       192.190.70.111
