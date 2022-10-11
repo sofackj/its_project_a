@@ -20,4 +20,6 @@ dnf install git -y
 EOF
 
 #-> Setup the git repository
+su - vagrant sh <<EOF
 git clone -b vagrant --single-branch https://github.com/sofackj/its_project_a.git
+EOF
