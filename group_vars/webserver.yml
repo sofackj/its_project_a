@@ -1,6 +1,5 @@
 ---
 testVar: "my-webserver"
-ansible_user: "devops"
 port_number: 9001
 config_structure: ["sites-availables","sites-enabled"]
 git_repository: "https://github.com/sofackj/python-cgi.git"

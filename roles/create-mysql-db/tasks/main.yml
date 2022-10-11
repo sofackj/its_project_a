@@ -21,7 +21,7 @@
     state: import
     target: /tmp/dump.sql
 # Create a user for this database
-- name: Add user devops
+- name: Add user vagrant
   mysql_user:
     name: '{{ ansible_user }}'
     password: '{{ db_password }}'

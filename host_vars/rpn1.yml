@@ -1,5 +1,4 @@
 ---
-ansible_user: "devops"
 forward_port: 80
 firewall_port: [80,443]
 server_name: "hello.jujutoits.com."

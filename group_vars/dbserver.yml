@@ -1,7 +1,6 @@
 ---
 testVar: "my-dbserver"
 port_number: 3306
-ansible_user: "devops"
 database_name: "test_db"
 db_password: '{{ vault_db_pass }}'
 server_type: "db"
