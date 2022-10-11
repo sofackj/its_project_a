@@ -5,22 +5,22 @@
 #   + On Linux  => export ENABLE_ZSH="true"
 
 Vagrant.configure("2") do |config|
-  clients=4
-  ram_client=2048
-  cpu_client=1
-  (1..clients).each do |i|
-    config.vm.define "client#{i}" do |client|
-      client.vm.box = "bento/rockylinux-8.6"
-      client.vm.network "private_network", type: "static", ip: "192.190.70.1#{i}"
-      client.vm.hostname = "client#{i}"
-      client.vm.provider "virtualbox" do |v|
-        v.name = "client#{i}"
-        v.memory = ram_client
-        v.cpus = cpu_client
-      end
-    end
-    config.vm.box_download_insecure=true
-  end
+  # clients=4
+  # ram_client=2048
+  # cpu_client=1
+  # (1..clients).each do |i|
+  #   config.vm.define "client#{i}" do |client|
+  #     client.vm.box = "bento/rockylinux-8.6"
+  #     client.vm.network "private_network", type: "static", ip: "192.190.70.1#{i}"
+  #     client.vm.hostname = "client#{i}"
+  #     client.vm.provider "virtualbox" do |v|
+  #       v.name = "client#{i}"
+  #       v.memory = ram_client
+  #       v.cpus = cpu_client
+  #     end
+  #   end
+  #   config.vm.box_download_insecure=true
+  # end
   config.vm.define "ansible" do |ansible|
     ansible.vm.box = "bento/rockylinux-8.6"
     ansible.vm.network "private_network", type: "static", ip: "192.190.70.111"
@@ -30,8 +30,10 @@ Vagrant.configure("2") do |config|
       v.memory = 2048
       v.cpus = 1
     end
-    ansible.vm.provision :shell do |shell|
-        shell.path = "install_ansible.sh"
-      end
+    config.vm.provision "file", source: "../.vault_password.txt" , destination: "/home/vagrant/.vault_password.txt"
+
+    # ansible.vm.provision :shell do |shell|
+    #     shell.path = "install_ansible.sh"
+    # end
   end
 end
