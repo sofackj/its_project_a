@@ -2,15 +2,15 @@
 all:
   hosts:
     rpn1:
-      ansible_host: 192.168.43.211
+      ansible_host: 192.190.70.11
     dns1:
-      ansible_host: 192.168.43.225
+      ansible_host: 192.190.70.12
   children:
     webserver:
       hosts:
         web1:
-          ansible_host: 192.168.43.61
+          ansible_host: 192.190.70.13
     dbserver:
       hosts:
         db1:
-          ansible_host: 192.168.43.76
+          ansible_host: 192.190.70.14
