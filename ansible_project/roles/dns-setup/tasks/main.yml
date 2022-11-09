@@ -1,0 +1,24 @@
+# Install bind and its utilities
+- name: Install bind and dependancies
+  dnf:
+    name:
+      - bind
+      - bind-utils
+    state: present
+# Setup of config file
+- name: Config files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/{{ item }}"
+  with_items: ['named.conf','named.conf.backup']
+  notify: Restart named service
+# Setup forward and reveerse files
+- name: Config files in var
+  copy:
+    src: "{{ item }}"
+    dest: "/var/named/{{ item }}"
+    owner: root
+    group: named
+    mode: '0644'
+  with_items: ['jujutoits.forward','jujutoits.reverse']
+  notify: Restart named service

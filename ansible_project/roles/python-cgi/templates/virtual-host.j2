@@ -1,0 +1,9 @@
+Listen {{ port_number }}
+<VirtualHost *:{{ port_number }}>
+	DocumentRoot {{ site_directory }}
+	<Directory "{{ site_directory }}">
+		Options +ExecCGI
+		DirectoryIndex index.py
+	</Directory>
+	AddHandler cgi-script .py
+</VirtualHost>

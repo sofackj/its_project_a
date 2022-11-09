@@ -1,0 +1,4 @@
+---
+git_branch: "test-python-cgi"
+git_repository: "https://github.com/sofackj/python-cgi.git"
+site_directory: "/var/www/html"

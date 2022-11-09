@@ -1,0 +1,30 @@
+# Install python3 and pip dependancies
+- name: Install python39 and mysql dependancies
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items: ['python39','python3-PyMySQL']
+# Delete test_db
+- name: Delete database test_db
+  mysql_db:
+    name: '{{ database_name }}'
+    state: absent
+# Copy the mysql dump file
+- name: Transfer dump.sql
+  copy:
+    src: dump.sql
+    dest: /tmp/dump.sql
+# Creation of the database and import of the table
+- name: Restore database
+  mysql_db:
+    name: '{{ database_name }}'
+    state: import
+    target: /tmp/dump.sql
+# Create a user for this database
+- name: Add user vagrant
+  mysql_user:
+    name: '{{ ansible_user }}'
+    password: '{{ db_password }}'
+    host: "{{ hostvars['web1']['ansible_host'] }}"
+    priv: '{{ database_name }}.*:ALL'
+    state: present

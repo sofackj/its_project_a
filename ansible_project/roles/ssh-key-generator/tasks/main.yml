@@ -1,0 +1,25 @@
+---
+# Create the public and private key pair
+- name: generate SSH key
+  openssh_keypair:
+    path: "~/.ssh/id_rsa_its"
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+  delegate_to: 127.0.0.1
+  run_once: True
+# Deploy keys on all remote servers
+- name: Deploy public key
+  authorized_key:
+    user: vagrant
+    key: "{{ lookup('file', '~/.ssh/id_rsa_its.pub') }}"
+    state: present
+  become: yes
+# Update all servers
+- name: Update system on al servers
+  tags: update
+  dnf:
+    user: "*"
+    state: latest
+  become: yes

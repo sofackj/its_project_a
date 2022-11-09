@@ -1,0 +1,8 @@
+# Deactivate ssh password
+ - name: Ensure SSH is deactivate
+   lineinfile:
+     path: ansible.cfg
+     regexp: '^#ssh_args'
+     line: ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o PreferredAuthentications=publickey
+   delegate_to: 127.0.0.1
+   run_once: True

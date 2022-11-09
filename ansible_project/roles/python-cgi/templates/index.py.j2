@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+import pymysql
+
+print("Content-Type: text/html")
+print()
+print("""
+<h1>My Website to show</h1>
+<h2>Check for the database test_db</h2>
+""")
+print()
+# Connect to the database
+conn = pymysql.connect(
+db='{{ hostvars['db1']['database_name'] }}',
+user='{{ ansible_user }}',
+passwd='{{ hostvars['db1']['db_password'] }}',
+host='{{ hostvars['db1']['ansible_host'] }}'
+)
+c = conn.cursor()
+c.execute("SELECT * FROM test;")
+for i in c:
+        print("<h3>{0}</h3>".format(i[0]))

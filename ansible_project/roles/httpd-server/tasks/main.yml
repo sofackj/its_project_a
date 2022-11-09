@@ -1,0 +1,43 @@
+# Install httpd
+- name: Install httpd
+  dnf:
+    name: httpd
+    state: present
+- name: Start httpd service and enable it
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+# Back-up the standard httpd config file
+- name: Back-up the httpd config file
+  copy:
+    src: httpd.conf.backup
+    dest: /etc/httpd/conf/httpd.conf.backup
+# Addition of sites-availables and -enabled directories
+- name: Addition of directories for httpd setup config
+  file:
+    path: '/etc/httpd/{{ item }}'
+    state: directory
+  with_items: '{{ config_structure }}'
+# Add a line at the end of the httpd config file
+- name: Conf file with web_port and conf files folder variables
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+  - Restart httpd service
+# - name: Start Firewalld service
+#   service:
+#     name: firewalld
+#     state: started
+#     enabled: yes
+# # Enable the port specified in the webserver variables
+# - name: Enable service for the specified port
+#   firewalld:
+#     port: '{{ web_port }}/tcp'
+#     permanent: yes
+#     immediate: yes
+#     state: enabled
+#     zone: public
+#   notify:
+#   - Restart firewalld service

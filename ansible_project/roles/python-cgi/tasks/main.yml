@@ -1,0 +1,37 @@
+# Install python3 and pip dependancies
+- name: Install python39 and mysql dependancies
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items: ['git','python39','python39-PyMySQL']
+# Install pymysql
+- name: Install pymysql
+  pip:
+    name: pymysql
+# Setup the conf file with the symbolic link
+- name: Template the virtual-host
+  template:
+    src: virtual-host.j2
+    dest: /etc/httpd/sites-availables/myfirstSite
+# Symolic link to enable the config file for httpd
+- name: test symbolic link
+  file:
+    src: /etc/httpd/sites-availables/myfirstSite
+    dest: /etc/httpd/sites-enabled/myfirstSite.conf
+    state: link
+# Download the script to execute
+# - name: test git repo
+#   git:
+#     repo: '{{ git_repository }}'
+#     dest: '{{ site_directory }}'
+#     single_branch: yes
+#     version: '{{ git_branch }}'
+#     force: yes
+# Setup template for python-cgi execution
+- name: Add index.py to html
+  template:
+    src: index.py.j2
+    dest: /var/www/html/index.py
+  notify:
+  - Give permission to directory
+  - Restart httpd service

@@ -1,0 +1,39 @@
+# Installation of mysql
+- name: Installation mysql
+  dnf:
+    name: mysql-server
+    state: present
+# Setup mysql service
+- name: Activating mysql service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+# Back-up the standard  my.cnf file
+- name: Back-up the httpd config file
+  copy:
+    remote_src: yes
+    src: /etc/my.cnf
+    dest: /etc/my.cnf.backup
+# Setup the conf file with the symbolic link
+- name: Replace the my.cnf file by the template
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+#-> Firewalld service set up
+# # Start Firewalld service
+# - name: Start Firewalld service
+#   service:
+#     name: firewalld
+#     state: started
+#     enabled: yes
+# # Enable the port specified in the webserver variables
+# - name: Enable service for the specified port
+#   firewalld:
+#     port: '{{ db_port }}/tcp'
+#     permanent: yes
+#     immediate: yes
+#     state: enabled
+#     zone: public
+#   notify:
+  # - Restart firewalld service

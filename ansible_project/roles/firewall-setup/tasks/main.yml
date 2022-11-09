@@ -1,0 +1,39 @@
+- name: Start Firewalld service
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+# Enable the forward for the reverse-proxy server
+- name: Enable multiple ports for the specified port
+  firewalld:
+    port: '{{ item }}/tcp'
+    permanent: yes
+    immediate: yes
+    state: enabled
+    zone: public
+  with_items: '{{ firewall_port }}'
+  when: server_type == "rev-prox"
+  notify:
+  - Restart firewalld service
+# Enable the forward for the web and db server
+- name: Enable only one port for a specific address
+  firewalld:
+    rich_rule: 'rule family=ipv4 source address={{ answer_to }} port port={{ port_number }} protocol=tcp accept'
+    permanent: yes
+    immediate: yes
+    state: enabled
+    zone: public
+  when: server_type == "db" or server_type == "web"
+  notify:
+  - Restart firewalld service
+# Enable the forward for the reverse-proxy server
+- name: Enable a specific service
+  firewalld:
+    service: dns
+    permanent: yes
+    immediate: yes
+    state: enabled
+    zone: public
+  when: server_type == "dns"
+  notify:
+  - Restart firewalld service
