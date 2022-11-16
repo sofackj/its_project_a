@@ -4,7 +4,7 @@
 sudo -i sh <<EOF
 dnf update -y
 dnf install epel-release -y
-dnf install ansible -y
+dnf install ansible-core -y
 EOF
 ansible --version
 
